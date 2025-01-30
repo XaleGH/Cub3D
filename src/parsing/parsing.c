@@ -2,14 +2,6 @@
 
 void	init_map_data(t_data *data)
 {
-	/* data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, SCR_WIDTH, SCR_HEIGHT,
-			"WELCOME TO THE AWKWARD / CREEPY MUSEUM");
-	if (!data->win)
-	{
-		free(data->mlx);
-		exit (1);
-	} */
 	data->nb_column = 0;
 	data->nb_row = 0;
 	data->p_count = 0;
@@ -19,27 +11,16 @@ void	init_map_data(t_data *data)
 	data->texture[1].path = NULL;
 	data->texture[2].path = NULL;
 	data->texture[3].path = NULL;
+	data->no = NULL;
+	data->so = NULL;
+	data->we = NULL;
+	data->ea = NULL;
 	data->cc = NULL;
 	data->cf = NULL;
 	data->count_line = 0;
 	data->valid_map = 1;
 	data->map = NULL;
-}
-
-void	check_double_texture(t_data *data)
-{
-	if (ft_strncmp(data->texture[0].path, data->texture[1].path, 1000) == 0)
-		ft_error_data(data, 6);
-	if (ft_strncmp(data->texture[0].path, data->texture[2].path, 1000) == 0)
-		ft_error_data(data, 6);
-	if (ft_strncmp(data->texture[0].path, data->texture[3].path, 1000) == 0)
-		ft_error_data(data, 6);
-	if (ft_strncmp(data->texture[1].path, data->texture[2].path, 1000) == 0)
-		ft_error_data(data, 6);
-	if (ft_strncmp(data->texture[1].path, data->texture[3].path, 1000) == 0)
-		ft_error_data(data, 6);
-	if (ft_strncmp(data->texture[2].path, data->texture[3].path, 1000) == 0)
-		ft_error_data(data, 6);
+	data->delta_angle = 0.1;
 }
 
 void	read_map(int file, t_data *data)
@@ -105,7 +86,9 @@ int	parsing(char **av, t_data *data)
 	init_map_data(data);
 	read_option(av, data);
 	if (data->count_line != 6)
+	{
 		return (ft_error_data(data, 1), 1);
+	}
 	clean_color_cc(data);
 	clean_color_cf(data);
 	check_color(data);

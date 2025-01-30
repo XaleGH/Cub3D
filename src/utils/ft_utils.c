@@ -29,3 +29,16 @@ int	rgb_to_hex(char *rgb_str)
 	color = (r << 16) | (g << 8) | b;
 	return (color);
 }
+
+void	free_paths(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->p_count)
+	{
+		free(data->texture[i].path);
+		i++;
+	}
+	return ;
+}

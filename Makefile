@@ -6,12 +6,14 @@ MLX = mlx/libmlx.a
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror -g -ggdb -O3 -ffast-math
 LDFLAGS = -lreadline -lm
+LDFLAGS = -lreadline -lm
 RM = rm -f
 
 SRCS =  $(wildcard $(DIR_SRC)*.c) \
 		$(wildcard $(DIR_SRC)/utils/*.c) \
 		$(wildcard $(DIR_SRC)/parsing/*.c) \
 		$(wildcard $(DIR_SRC)/raycasting/*.c) \
+		$(wildcard $(DIR_SRC)/player/*.c)
 
 OBJS = $(SRCS:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 
@@ -46,6 +48,8 @@ $(NAME): $(OBJS)
 	@echo "$(BOLD)$(BLUE)------------------------------------------$(RESET)"
 
 clean:
+	@make clean -sC libft
+	@make clean -sC mlx
 	@make clean -sC libft
 	@make clean -sC mlx
 	@rm -rf $(DIR_OBJ)

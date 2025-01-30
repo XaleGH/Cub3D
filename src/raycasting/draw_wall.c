@@ -1,6 +1,8 @@
 #include "../../inc/cub3d.h"
+#include "../../inc/cub3d.h"
 
 // 0 = NO ; 1 = SO ; 2 = WE ; 3 = EA
+
 int	get_texture(t_data *data)
 {
 	data->ray.r_angle = normalize_angle(data->ray.r_angle);
@@ -23,14 +25,17 @@ int	get_texture(t_data *data)
 void	get_text_x(t_data *data, int text_nb)
 {
 	if (data->ray.flag == 1)
+	if (data->ray.flag == 1)
 	{
 		data->text_x = fmodf(data->ray.horiz_x, TILE_SIZE);
+		if (text_nb == 1)
 		if (text_nb == 1)
 			data->text_x = TILE_SIZE - data->text_x;
 	}
 	else
 	{
 		data->text_x = fmodf(data->ray.vert_y, TILE_SIZE);
+		if (text_nb == 2)
 		if (text_nb == 2)
 			data->text_x = TILE_SIZE - data->text_x;
 	}
@@ -75,5 +80,23 @@ void	display_wall(t_data *data, int ray)
 	if (top_pix < 0)
 		top_pix = 0;
 	draw_wall(data, top_pix, bottom_pix, ray);
-	//draw_floor_ceiling(data, ray, bottom_pix, top_pix);
+	draw_floor_ceiling(data, ray, bottom_pix, top_pix);
+}
+
+void	draw_floor_ceiling(t_data *data, int ray, int bottom_pix, int top_pix)
+{
+	int	i;
+
+	i = bottom_pix;
+	while (i < SCR_HEIGHT)
+	{
+		my_mlx_pixel_put(&data->img_screen, ray, i, data->floor_color);
+		i++;
+	}
+	i = 0;
+	while (i < top_pix)
+	{
+		my_mlx_pixel_put(&data->img_screen, ray, i, data->ceiling_color);
+		i++;
+	}
 }
