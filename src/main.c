@@ -11,12 +11,12 @@ int	main(int ac, char **av)
 	check_exten(av[1]);
 	//printf("allo\n");
 	parsing(av, &data);
-	initialization(&data);
+	//initialization(&data);
 
-	printf("NO : %s\n", data.no);
-	printf("SO : %s\n", data.so);
-	printf("WE : %s\n", data.we);
-	printf("EA : %s\n", data.ea);
+	printf("NO : %s\n", data.texture[0].path);
+	printf("SO : %s\n", data.texture[1].path);
+	printf("WE : %s\n", data.texture[2].path);
+	printf("EA : %s\n", data.texture[3].path);
 	printf("C : %s\n", data.cc);
 	printf("F : %s\n", data.cf);
 	while (i < 14)

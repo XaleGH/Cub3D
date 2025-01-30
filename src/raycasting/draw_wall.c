@@ -1,4 +1,4 @@
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
 
 // 0 = NO ; 1 = SO ; 2 = WE ; 3 = EA
 int	get_texture(t_data *data)
@@ -22,16 +22,16 @@ int	get_texture(t_data *data)
 
 void	get_text_x(t_data *data, int text_nb)
 {
-	if (data->ray.flag = 1)
+	if (data->ray.flag == 1)
 	{
 		data->text_x = fmodf(data->ray.horiz_x, TILE_SIZE);
-		if (text_nb = 1)
+		if (text_nb == 1)
 			data->text_x = TILE_SIZE - data->text_x;
 	}
 	else
 	{
 		data->text_x = fmodf(data->ray.vert_y, TILE_SIZE);
-		if (text_nb = 2)
+		if (text_nb == 2)
 			data->text_x = TILE_SIZE - data->text_x;
 	}
 }
@@ -42,6 +42,7 @@ void	draw_wall(t_data *data, int top_pix, int bottom_pix, int ray)
 	double	step;
 	double	pos_y;
 
+	ray = ray;//a enlever
 	text_nb = get_texture(data);
 	step = TILE_SIZE / data->wall_height;
 	pos_y = (top_pix - SCR_HEIGHT / 2 + data->wall_height / 2) * step;
@@ -53,7 +54,7 @@ void	draw_wall(t_data *data, int top_pix, int bottom_pix, int ray)
 		pos_y += step;
 		if (data->ray.flag == 0)
 			data->color = (data->color >> 1) & 8355711;
-		my_mlx_pixel_put(&data->img_screen, ray, top_pix, data->color);
+		//my_mlx_pixel_put(&data->img_screen, ray, top_pix, data->color);
 		top_pix++;
 	}
 }
@@ -74,5 +75,5 @@ void	display_wall(t_data *data, int ray)
 	if (top_pix < 0)
 		top_pix = 0;
 	draw_wall(data, top_pix, bottom_pix, ray);
-	draw_floor_ceiling(data, ray, bottom_pix, top_pix);
+	//draw_floor_ceiling(data, ray, bottom_pix, top_pix);
 }
