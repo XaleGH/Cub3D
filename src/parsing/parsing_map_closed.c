@@ -11,15 +11,6 @@ int	check_in_map(char **map_cpy, int x, int y, t_data *data)
 	return (0);
 }
 
-/* void	check_angle(char **map_cpy, int y, int x, t_data *data)
-{
-	if (map_cpy[y - 1][x] == ' ' || map_cpy[y + 1][x] == ' '
-	|| map_cpy[y][x - 1] == ' ' || map_cpy[y][x + 1] == ' '
-	|| map_cpy[y - 1][x - 1] == ' ' || map_cpy[y - 1][x + 1] == ' '
-	|| map_cpy[y + 1][x - 1] == ' ' || map_cpy[y + 1][x + 1] == ' ')
-		data->map_data.valid_map = 0;
-} */
-
 void	check_angle(char **map_cpy, int y, int x, t_data *data)
 {
 	if (map_cpy[y - 1][x] == ' ' || map_cpy[y + 1][x] == ' '

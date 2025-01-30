@@ -89,10 +89,6 @@ typedef struct s_data
 	int				nb_column;
 	int				nb_row;
 	int				p_count;
-	char			*no;
-	char			*so;
-	char			*we;
-	char			*ea;
 	char			*cc;
 	char			*cf;
 	int				count_line;
@@ -121,6 +117,7 @@ int		check_exten(char *av);
 void	line_cardinal(char *line, t_data *data, int flag);
 void	check_line(char *line, t_data *data);
 void	check_char_map(t_data *data);
+void	check_player(t_data *data);
 
 /* parsing/parsing_color.c */
 void	check_color(t_data *data);
@@ -170,10 +167,18 @@ double	get_vertical_distance(t_data *data);
 void	get_shorter_distance(t_data *data);
 void	raycasting(t_data *data);
 
+/* raycasting/init_texture.c*/
+void	init_textures(t_data *data);
+char	*get_data_address(t_texture *texture);
+void	store_textures_pixels(t_data *data, int i);
+void	*convert_img(t_data *data, char *path, int i);
+void	init_texture_data(t_data *data);
+
 /* utils/ft_error.c */
 void	ft_error(int flag);
 void	ft_error_data(t_data *data, int flag);
 void	free_char_option(t_data *data);
+void	free_mlx(t_data *data);
 
 /* utils/ft_utils.c */
 void	free_array(char **array);

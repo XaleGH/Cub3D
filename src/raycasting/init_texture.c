@@ -77,7 +77,7 @@ void	init_textures(t_data *data)
 		data->texture[i].img = convert_img(data, data->texture[i].path, i);
 		if (!data->texture[i].img)
 			printf("failed to load img\n");
-		data->texture[i].addr = (int *)get_data_adress(&(data->texture[i]));
+		data->texture[i].addr = (int *)get_data_address(&(data->texture[i]));
 		if (!data->texture[i].addr)
 			printf("failed to load texture address\n");
 		store_textures_pixels(data, i);

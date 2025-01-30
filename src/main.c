@@ -3,9 +3,7 @@
 int	main(int ac, char **av)
 {
 	t_data	data;
-	int		i;
 
-	i = 0;
 	if (ac != 2)
 		ft_error(0);
 	check_exten(av[1]);

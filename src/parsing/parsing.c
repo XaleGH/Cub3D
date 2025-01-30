@@ -5,16 +5,10 @@ void	init_map_data(t_data *data)
 	data->nb_column = 0;
 	data->nb_row = 0;
 	data->p_count = 0;
-	data->width = 0;
-	data->height = 0;
 	data->texture[0].path = NULL;
 	data->texture[1].path = NULL;
 	data->texture[2].path = NULL;
 	data->texture[3].path = NULL;
-	data->no = NULL;
-	data->so = NULL;
-	data->we = NULL;
-	data->ea = NULL;
 	data->cc = NULL;
 	data->cf = NULL;
 	data->count_line = 0;
@@ -96,6 +90,5 @@ int	parsing(char **av, t_data *data)
 	check_char_map(data);
 	check_player(data);
 	check_wall(data);
-	check_double_texture(data);
 	return (0);
 }

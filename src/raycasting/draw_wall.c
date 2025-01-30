@@ -1,5 +1,4 @@
 #include "../../inc/cub3d.h"
-#include "../../inc/cub3d.h"
 
 // 0 = NO ; 1 = SO ; 2 = WE ; 3 = EA
 
@@ -25,17 +24,14 @@ int	get_texture(t_data *data)
 void	get_text_x(t_data *data, int text_nb)
 {
 	if (data->ray.flag == 1)
-	if (data->ray.flag == 1)
 	{
 		data->text_x = fmodf(data->ray.horiz_x, TILE_SIZE);
-		if (text_nb == 1)
 		if (text_nb == 1)
 			data->text_x = TILE_SIZE - data->text_x;
 	}
 	else
 	{
 		data->text_x = fmodf(data->ray.vert_y, TILE_SIZE);
-		if (text_nb == 2)
 		if (text_nb == 2)
 			data->text_x = TILE_SIZE - data->text_x;
 	}
