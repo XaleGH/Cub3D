@@ -2,19 +2,9 @@
 
 void	init_map_data(t_data *data)
 {
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, SCR_WIDTH, SCR_HEIGHT,
-			"WELCOME TO THE AWKWARD / CREEPY MUSEUM");
-	if (!data->win)
-	{
-		free(data->mlx);
-		exit (1);
-	}
 	data->nb_column = 0;
 	data->nb_row = 0;
 	data->p_count = 0;
-	data->width = 0;
-	data->height = 0;
 	data->no = NULL;
 	data->so = NULL;
 	data->we = NULL;
@@ -24,6 +14,7 @@ void	init_map_data(t_data *data)
 	data->count_line = 0;
 	data->valid_map = 1;
 	data->map = NULL;
+	data->delta_angle = 0.1;
 }
 
 void	read_map(int file, t_data *data)
@@ -89,7 +80,9 @@ int	parsing(char **av, t_data *data)
 	init_map_data(data);
 	read_option(av, data);
 	if (data->count_line != 6)
+	{
 		return (ft_error_data(data, 1), 1);
+	}
 	clean_color_cc(data);
 	clean_color_cf(data);
 	check_color(data);

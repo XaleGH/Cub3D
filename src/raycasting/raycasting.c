@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../../inc/cub3d.h"
 
 int	hit_wall(t_data *data, double x, double y, char flag)
 {
@@ -89,7 +89,7 @@ void	get_shorter_distance(t_data *data)
 
 void	raycasting(t_data *data)
 {
-	int ray;
+	int	ray;
 
 	ray = 0;
 	data->ray.r_angle = data->player.p_angle - (data->player.fov_rad / 2);

@@ -80,31 +80,15 @@ typedef struct s_player
 	double	p_angle;
 }	t_player;
 
-typedef struct s_data{
+typedef struct s_data
+{
 	void			*mlx;
 	void			*win;
-
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-	double	offset_x;
-	double	offset_y;
-	double	av_x;
-	double	av_y;
-
 	t_img			img_screen;
-
 	char			**map;
 	int				nb_column;
 	int				nb_row;
 	int				p_count;
-	int				width;
-	int				height;
-
 	char			*no;
 	char			*so;
 	char			*we;
@@ -113,12 +97,14 @@ typedef struct s_data{
 	char			*cf;
 	int				count_line;
 	int				valid_map;
-
 	double			wall_height;
+    double			delta_angle;
 	int				text_x;
 	int				text_y;
 	unsigned int	color;
 	int				wall[4][TILE_SIZE * TILE_SIZE];
+	unsigned long	floor_color;
+	unsigned long	ceiling_color;
 
 	t_player		player;
 	t_ray			ray;
@@ -130,41 +116,11 @@ typedef struct s_data{
 
 /* Fonctions */
 
-/* raycasting/raycasting.c */
-int		hit_wall(t_data *data, double x, double y, char flag);
-double	get_horizontal_distance(t_data *data);
-double	get_vertical_distance(t_data *data);
-void	get_shorter_distance(t_data *data);
-void	raycasting(t_data *data);
-
-/* raycasting/raycasting_utils.c */
-double	get_inter(t_data *data, char dir);
-double	get_first_step(t_data *data, char dir);
-double	normalize_angle(double angle);
-
-/* raycasting/draw_wall.c */
-int		get_texture(t_data *data);
-void	get_text_x(t_data *data, int text_nb);
-void	draw_wall(t_data *data, int top_pix, int bottom_pix, int ray);
-void	display_wall(t_data *data, int ray);
-
-/* parsing/parsing.c */
-void	init_map_data(t_data *data);
-void	read_map(int file, t_data *data);
-void	read_option(char **av, t_data *data);
-int		parsing(char **av, t_data *data);
-
 /* parsing/parsing_check_file.c */
 int		check_exten(char *av);
 void	line_cardinal(char *line, t_data *data, int flag);
 void	check_line(char *line, t_data *data);
 void	check_char_map(t_data *data);
-
-/* parsing/parsing_map_closed.c */
-int		check_in_map(char **map_cpy, int x, int y, t_data *data);
-void	check_angle(char **map_cpy, int y, int x, t_data *data);
-void	is_closed(char **map_cpy, int y, int x, t_data *data);
-void	check_wall(t_data *data);
 
 /* parsing/parsing_color.c */
 void	check_color(t_data *data);
@@ -172,6 +128,47 @@ void	clean_color_cc(t_data *data);
 void	clean_color_cf(t_data *data);
 void	check_value_color(t_data *data);
 void	line_color(char *line, t_data *data, int flag);
+
+/* parsing/parsing_map_closed.c */
+int		check_in_map(char **map_cpy, int x, int y, t_data *data);
+void	check_angle(char **map_cpy, int y, int x, t_data *data);
+void	is_closed(char **map_cpy, int y, int x, t_data *data);
+void	check_wall(t_data *data);
+
+/* parsing/parsing.c */
+void	init_map_data(t_data *data);
+void	read_map(int file, t_data *data);
+void	read_option(char **av, t_data *data);
+int		parsing(char **av, t_data *data);
+
+/* player/input.c */
+int 	key_press(int keycode, t_data *data);
+int		handle_events(int keycode, t_data *data);
+int 	handle_close(t_data *data);
+
+/* player/moves.c */
+void	rotate(t_data *data, int direction);
+void	forward_or_back(t_data *data, int dir);
+void	left_or_right(t_data *data, int dir);
+
+/* raycasting/draw_wall.c */
+int		get_texture(t_data *data);
+void	get_text_x(t_data *data, int text_nb);
+void	draw_wall(t_data *data, int top_pix, int bottom_pix, int ray);
+void	display_wall(t_data *data, int ray);
+void	draw_floor_ceiling(t_data *data, int ray, int bottom_pix, int top_pix);
+
+/* raycasting/raycasting_utils.c */
+double	normalize_angle(double angle);
+double	get_first_step(t_data *data, char dir);
+double	get_inter(t_data *data, char dir);
+
+/* raycasting/raycasting.c */
+int		hit_wall(t_data *data, double x, double y, char flag);
+double	get_horizontal_distance(t_data *data);
+double	get_vertical_distance(t_data *data);
+void	get_shorter_distance(t_data *data);
+void	raycasting(t_data *data);
 
 /* utils/ft_error.c */
 void	ft_error(int flag);
@@ -181,16 +178,12 @@ void	free_char_option(t_data *data);
 /* utils/ft_utils.c */
 void	free_array(char **array);
 int		rgb_to_hex(char *rgb_str);
+void	free_paths(t_data *data);
+
+/* utils/rendering_utils.c */
+void	my_mlx_pixel_put(t_img *img_screen, int x, int y, int color);
 
 /* main.c */
 void	initialization(t_data *data);
-
-/* input.c */
-int 	key_press(int keycode, t_data *data);
-int		handle_events(int keycode, t_data *data);
-int 	handle_close(t_data *data);
-
-/* utils/rendering_utils.c */
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

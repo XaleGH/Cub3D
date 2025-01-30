@@ -5,12 +5,14 @@ LIBFT = libft/libft.a
 MLX = mlx/libmlx.a
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror -g -ggdb -O3 -ffast-math
-LDFLAGS = -lreadline
+LDFLAGS = -lreadline -lm
 RM = rm -f
 
 SRCS =  $(wildcard $(DIR_SRC)*.c) \
 		$(wildcard $(DIR_SRC)/utils/*.c) \
 		$(wildcard $(DIR_SRC)/parsing/*.c) \
+		$(wildcard $(DIR_SRC)/raycasting/*.c) \
+		$(wildcard $(DIR_SRC)/player/*.c)
 
 OBJS = $(SRCS:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 
@@ -45,14 +47,14 @@ $(NAME): $(OBJS)
 	@echo "$(BOLD)$(BLUE)------------------------------------------$(RESET)"
 
 clean:
-	@make clean -sC libft mlx
+	@make clean -sC libft
+	@make clean -sC mlx
 	@rm -rf $(DIR_OBJ)
 	@echo "$(BOLD)$(YELLOW)🧹🧼     Cleaned .o Cub3d's files     🧼🧹$(RESET)"
 	@echo "\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@make fclean -sC libft mlx
 	@echo "$(BOLD)$(YELLOW)🧹🧼        Cleaned Cub3d exec        🧼🧹$(RESET)"
 	@echo "\n"
 
