@@ -102,8 +102,8 @@ typedef struct s_data{
 	int				nb_column;
 	int				nb_row;
 	int				p_count;
-	int				width;
-	int				height;
+	//int				width;
+	//int				height;
 
 	char			*no;
 	char			*so;
@@ -122,7 +122,7 @@ typedef struct s_data{
 
 	t_player		player;
 	t_ray			ray;
-	t_texture		texture[4];
+	t_texture		texture[4]; // 0 = NO ; 1 = SO ; 2 = WE ; 3 = EA
 
 
 
@@ -148,6 +148,13 @@ void	get_text_x(t_data *data, int text_nb);
 void	draw_wall(t_data *data, int top_pix, int bottom_pix, int ray);
 void	display_wall(t_data *data, int ray);
 
+/* raycasting/init_texture.c*/
+void	init_textures(t_data *data);
+char	*get_data_address(t_texture *texture);
+void	store_textures_pixels(t_data *data, int i);
+void	*convert_img(t_data *data, char *path, int i);
+void	init_texture_data(t_data *data);
+
 /* parsing/parsing.c */
 void	init_map_data(t_data *data);
 void	read_map(int file, t_data *data);
@@ -159,6 +166,7 @@ int		check_exten(char *av);
 void	line_cardinal(char *line, t_data *data, int flag);
 void	check_line(char *line, t_data *data);
 void	check_char_map(t_data *data);
+void	check_player(t_data *data);
 
 /* parsing/parsing_map_closed.c */
 int		check_in_map(char **map_cpy, int x, int y, t_data *data);
