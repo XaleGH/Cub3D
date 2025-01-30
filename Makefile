@@ -6,6 +6,7 @@ MLX = mlx/libmlx.a
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror -g -ggdb -O3 -ffast-math
 LDFLAGS = -lreadline -lm
+LDFLAGS = -lreadline -lm
 RM = rm -f
 
 SRCS =  $(wildcard $(DIR_SRC)*.c) \
@@ -47,6 +48,8 @@ $(NAME): $(OBJS)
 	@echo "$(BOLD)$(BLUE)------------------------------------------$(RESET)"
 
 clean:
+	@make clean -sC libft
+	@make clean -sC mlx
 	@make clean -sC libft
 	@make clean -sC mlx
 	@rm -rf $(DIR_OBJ)

@@ -30,9 +30,9 @@ void	ft_error_data(t_data *data, int flag)
 	if (flag == 5)
 		perror("Error\nMap not close ");
 	if (flag == 6)
-		perror("");
+		perror("Error\nSame path for texture detected ");
 	if (flag == 7)
-		perror("");
+		perror("Error\nOne and only one player needed ");
 	if (flag == 8)
 		perror("");
 	if (data->map != NULL)
@@ -43,16 +43,25 @@ void	ft_error_data(t_data *data, int flag)
 
 void	free_char_option(t_data *data)
 {
-	if (data->no != NULL)
-		free(data->no);
-	if (data->so != NULL)
-		free(data->so);
-	if (data->we != NULL)
-		free(data->we);
-	if (data->ea != NULL)
-		free(data->ea);
+	if (data->texture[0].path != NULL)
+		free(data->texture[0].path);
+	if (data->texture[1].path != NULL)
+		free(data->texture[1].path);
+	if (data->texture[2].path != NULL)
+		free(data->texture[2].path);
+	if (data->texture[3].path != NULL)
+		free(data->texture[3].path);
 	if (data->cc != NULL)
 		free(data->cc);
 	if (data->cf != NULL)
 		free(data->cf);
 }
+
+void	free_mlx(t_data *data)
+{
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	return;
+}
+

@@ -108,7 +108,7 @@ typedef struct s_data
 
 	t_player		player;
 	t_ray			ray;
-	t_texture		texture[4];
+	t_texture		texture[4]; // 0 = NO ; 1 = SO ; 2 = WE ; 3 = EA
 
 
 
