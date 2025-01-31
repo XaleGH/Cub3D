@@ -23,7 +23,6 @@ void	forward_or_back(t_data *data, int dir)
 	int	new_x;
 	int	new_y;
 
-    printf("%d\n", data->player.p_speed);
 	new_x = data->player.p_x + floorf(data->player.p_speed
 			* cos(data->player.p_angle)) * dir;
 	new_y = data->player.p_y + floorf(data->player.p_speed

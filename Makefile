@@ -3,8 +3,8 @@ DIR_SRC = src/
 DIR_OBJ = obj/
 LIBFT = libft/libft.a
 MLX = mlx/libmlx.a
-CC = cc 
-CFLAGS = -Wall -Wextra -Werror -g -ggdb -O3 -ffast-math
+CC = gcc 
+CFLAGS = -Wall -Wextra -Werror -g -ggdb -O3 -ffast-math -Imlx_linux -fPIE
 LDFLAGS = -lreadline -lm
 RM = rm -f
 
@@ -55,6 +55,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
+	@$(RM) $(LIBFT)
 	@echo "$(BOLD)$(YELLOW)🧹🧼        Cleaned Cub3d exec        🧼🧹$(RESET)"
 	@echo "\n"
 

@@ -25,9 +25,9 @@ void	*convert_img(t_data *data, char *path, int i)
 			txt = "NO";
 		else if (i == 1)
 			txt = "SO";
-		else if (i == 1)
+		else if (i == 2)
 			txt = "WE";
-		else if (i == 1)
+		else if (i == 3)
 			txt = "EA";
 		printf("error\npath to texture %s is invalid\n", txt);
 		free_array(data->map);
@@ -74,6 +74,7 @@ void	init_textures(t_data *data)
 	init_texture_data(data);
 	while(i < 4)
 	{
+        printf("TEST001 : %i\n", i);
 		data->texture[i].img = convert_img(data, data->texture[i].path, i);
 		if (!data->texture[i].img)
 			printf("failed to load img\n");
@@ -81,7 +82,19 @@ void	init_textures(t_data *data)
 		if (!data->texture[i].addr)
 			printf("failed to load texture address\n");
 		store_textures_pixels(data, i);
-		mlx_destroy_image(data->mlx, data->texture[i].img);
+        printf("TEST002 : %i\n", i);
+        if (data->texture[i].img)
+        {
+            mlx_destroy_image(data->mlx, data->texture[i].img);
+            data->texture[i].img = NULL;  // Optionnel : Marquer l'image comme détruite
+        }
+        else
+        {
+            printf("Texture %d image is NULL, skipping destruction.\n", i);
+        }
+		//mlx_destroy_image(data->mlx, data->texture[i].img);
+        printf("TEST003 : %i\n", i);
 		i++;
+        printf("TEST004 : %i\n", i);
 	}
 }

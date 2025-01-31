@@ -2,6 +2,8 @@
 
 void	init_map_data(t_data *data)
 {
+    data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, SCR_WIDTH, SCR_HEIGHT, "Cub3D");
 	data->nb_column = 0;
 	data->nb_row = 0;
 	data->p_count = 0;
@@ -15,6 +17,11 @@ void	init_map_data(t_data *data)
 	data->valid_map = 1;
 	data->map = NULL;
 	data->delta_angle = 0.1;
+
+    data->text_y = 0;
+    data->text_x = 0;
+    data->ray.flag = 0;
+    data->color = 0;
 }
 
 void	read_map(int file, t_data *data)
@@ -44,6 +51,12 @@ void	read_map(int file, t_data *data)
 	free(line);
 	data->map = ft_split(map_line, '\n');
 	return (close(file), free(map_line));
+}
+
+void    init_cell_floor_color(t_data *data)
+{
+    data->ceiling_color = rgb_to_hex(data->cc);
+    data->floor_color = rgb_to_hex(data->cf);
 }
 
 void	read_option(char **av, t_data *data)

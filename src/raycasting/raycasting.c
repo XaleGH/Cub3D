@@ -98,9 +98,9 @@ void	raycasting(t_data *data)
 	while (ray < SCR_WIDTH)
 	{
 		get_shorter_distance(data);
-		//display_wall(data, ray);//afaire
+		display_wall(data, ray);
 		ray++;
 		data->ray.r_angle += data->player.fov_rad / SCR_WIDTH;
 	}
-	//mlx_put_image_to_window(data->mlx, data->win, data->img_screen.img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->img_screen.img, 0, 0);
 }

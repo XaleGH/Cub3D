@@ -1,7 +1,7 @@
-NO ./assets/texture/lowarnie.xpm
-SO ./assets/texture/oloncle.xpm
-WE ./assets/texture/dabae.xpm
-EA ./assets/texture/kbrener-.xpm
+NO ./assets/texture/fox.xpm
+SO ./assets/texture/squirrel.xpm
+WE ./assets/texture/owl.xpm
+EA ./assets/texture/wolf.xpm
 
 
 F   220   ,  100 ,    0   

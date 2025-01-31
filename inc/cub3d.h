@@ -133,6 +133,7 @@ void	is_closed(char **map_cpy, int y, int x, t_data *data);
 void	check_wall(t_data *data);
 
 /* parsing/parsing.c */
+void    init_cell_floor_color(t_data *data);
 void	init_map_data(t_data *data);
 void	read_map(int file, t_data *data);
 void	read_option(char **av, t_data *data);
