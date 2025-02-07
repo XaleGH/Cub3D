@@ -18,7 +18,7 @@ void	*convert_img(t_data *data, char *path, int i)
 	void	*img;
 	char	*txt;
 
-	img = mlx_xpm_file_to_image(data->mlx, path, &(data->texture[i].width), &(data->texture[i].width));
+	img = mlx_xpm_file_to_image(data->mlx, path, &(data->texture[i].width), &(data->texture[i].height));
 	if (!img)
 	{
 		if (i == 0)
@@ -74,7 +74,6 @@ void	init_textures(t_data *data)
 	init_texture_data(data);
 	while(i < 4)
 	{
-        printf("TEST001 : %i\n", i);
 		data->texture[i].img = convert_img(data, data->texture[i].path, i);
 		if (!data->texture[i].img)
 			printf("failed to load img\n");
@@ -82,19 +81,7 @@ void	init_textures(t_data *data)
 		if (!data->texture[i].addr)
 			printf("failed to load texture address\n");
 		store_textures_pixels(data, i);
-        printf("TEST002 : %i\n", i);
-        if (data->texture[i].img)
-        {
-            mlx_destroy_image(data->mlx, data->texture[i].img);
-            data->texture[i].img = NULL;  // Optionnel : Marquer l'image comme détruite
-        }
-        else
-        {
-            printf("Texture %d image is NULL, skipping destruction.\n", i);
-        }
-		//mlx_destroy_image(data->mlx, data->texture[i].img);
-        printf("TEST003 : %i\n", i);
+        mlx_destroy_image(data->mlx, data->texture[i].img);
 		i++;
-        printf("TEST004 : %i\n", i);
 	}
 }

@@ -43,7 +43,6 @@ void	draw_wall(t_data *data, int top_pix, int bottom_pix, int ray)
 	double	step;
 	double	pos_y;
 
-	(void)ray;
 	text_nb = get_texture(data);
 	step = TILE_SIZE / data->wall_height;
 	pos_y = (top_pix - SCR_HEIGHT / 2 + data->wall_height / 2) * step;

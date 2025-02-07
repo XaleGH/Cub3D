@@ -31,7 +31,7 @@ void	forward_or_back(t_data *data, int dir)
 	{
 		data->player.p_x = new_x;
 		data->player.p_y = new_y;
-	}
+    }
 	mlx_destroy_image(data->mlx, data->img_screen.img);
 	raycasting(data);
 }

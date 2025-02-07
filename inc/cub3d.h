@@ -31,6 +31,7 @@
 # define RIGHT			100
 # define FWD			119
 # define LEFT			97
+# define BUFFER_DIFF    0.008
 //azerty :
 //# define FWD		122
 //# define LEFT			113
@@ -76,7 +77,7 @@ typedef struct s_player
 	int		p_x;
 	int		p_y;
 	float	fov_rad;
-	int		p_speed;
+	float	p_speed;
 	double	p_angle;
 }	t_player;
 
@@ -104,7 +105,7 @@ typedef struct s_data
 
 	t_player		player;
 	t_ray			ray;
-	t_texture		texture[4]; // 0 = NO ; 1 = SO ; 2 = WE ; 3 = EA
+	t_texture		texture[4];
 
 
 
@@ -190,6 +191,5 @@ void	free_paths(t_data *data);
 void	my_mlx_pixel_put(t_img *img_screen, int x, int y, int color);
 
 /* main.c */
-void	initialization(t_data *data);
 
 #endif

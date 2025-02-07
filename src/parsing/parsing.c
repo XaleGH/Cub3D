@@ -16,7 +16,7 @@ void	init_map_data(t_data *data)
 	data->count_line = 0;
 	data->valid_map = 1;
 	data->map = NULL;
-	data->delta_angle = 0.1;
+	data->delta_angle = 0.03;
 
     data->text_y = 0;
     data->text_x = 0;

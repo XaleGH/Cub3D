@@ -6,16 +6,29 @@ int	key_press(int keycode, t_data *data)
 		rotate(data, 1);
 	if (keycode == RR)
 		rotate(data, -1);
-	if (keycode == FWD)
+    if (keycode == FWD)
 		forward_or_back(data, 1);
 	if (keycode == BACK)
 		forward_or_back(data, -1);
 	if (keycode == LEFT)
-		left_or_right(data, 1);
+		left_or_right(data, -1);
 	if (keycode == RIGHT)
 		left_or_right(data, 1);
+	/* if (keycode == FWD && check_pos(data))
+		forward_or_back(data, 1);
+	if (keycode == BACK && check_pos(data))
+		forward_or_back(data, -1);
+	if (keycode == LEFT && check_pos(data))
+		left_or_right(data, -1);
+	if (keycode == RIGHT && check_pos(data))
+		left_or_right(data, 1); */
 	return (0);
 }
+/* 
+bool    check_pos(t_data *data)
+{
+    if(data->player.p_x)
+} */
 
 int	handle_events(int keycode, t_data *data)
 {

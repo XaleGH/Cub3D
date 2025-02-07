@@ -74,6 +74,29 @@ void	check_line(char *line, t_data *data)
 	}
 }
 
+void    init_p_angle(t_data *data, char dir)
+{
+	if (dir == 'N')
+		data->player.p_angle = 3 * PI / 2;
+	if (dir == 'S')
+		data->player.p_angle = PI / 2;
+	if (dir == 'E')
+		data->player.p_angle = 0;
+	if (dir == 'W')
+		data->player.p_angle = PI;
+}
+
+void    init_player(t_data *data, int x, int y)
+{
+	data->player.map_x = x;
+	data->player.map_y = y;
+	data->player.p_x = x * TILE_SIZE + TILE_SIZE / 2;
+	data->player.p_y = y * TILE_SIZE + TILE_SIZE / 2;
+	data->player.p_speed = 10;
+	data->player.fov_rad = (FOV * PI / 180);
+	init_p_angle(data, data->map[y][x]);
+}
+
 void	check_player(t_data *data)
 {
 	int	x;
@@ -89,7 +112,10 @@ void	check_player(t_data *data)
 			|| data->map[y][x] == 'S'
 			|| data->map[y][x] == 'E'
 			|| data->map[y][x] == 'W')
+			{
+				init_player(data, x, y);
 				data->p_count += 1;
+			}
 			x++;
 		}
 		y++;
