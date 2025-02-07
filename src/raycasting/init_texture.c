@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_texture.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/07 15:00:56 by thsion            #+#    #+#             */
+/*   Updated: 2025/02/07 15:02:50 by thsion           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	init_texture_data(t_data *data)
@@ -5,7 +17,7 @@ void	init_texture_data(t_data *data)
 	int	i;
 
 	i = 0;
-	while(i < 4)
+	while (i < 4)
 	{
 		data->texture[i].width = TILE_SIZE;
 		data->texture[i].height = TILE_SIZE;
@@ -18,7 +30,8 @@ void	*convert_img(t_data *data, char *path, int i)
 	void	*img;
 	char	*txt;
 
-	img = mlx_xpm_file_to_image(data->mlx, path, &(data->texture[i].width), &(data->texture[i].height));
+	img = mlx_xpm_file_to_image(data->mlx, path, &(data->texture[i].width),
+			&(data->texture[i].height));
 	if (!img)
 	{
 		if (i == 0)
@@ -35,7 +48,7 @@ void	*convert_img(t_data *data, char *path, int i)
 		free_mlx(data);
 		exit(1);
 	}
-	return(img);
+	return (img);
 }
 
 void	store_textures_pixels(t_data *data, int i)
@@ -62,7 +75,8 @@ char	*get_data_address(t_texture *texture)
 {
 	char	*address;
 
-	address = mlx_get_data_addr(texture->img, &(texture->bits_per_pixel), &(texture->line_length), &(texture->endian));
+	address = mlx_get_data_addr(texture->img, &(texture->bits_per_pixel),
+			&(texture->line_length), &(texture->endian));
 	return (address);
 }
 
@@ -72,7 +86,7 @@ void	init_textures(t_data *data)
 
 	i = 0;
 	init_texture_data(data);
-	while(i < 4)
+	while (i < 4)
 	{
 		data->texture[i].img = convert_img(data, data->texture[i].path, i);
 		if (!data->texture[i].img)
@@ -81,7 +95,7 @@ void	init_textures(t_data *data)
 		if (!data->texture[i].addr)
 			printf("failed to load texture address\n");
 		store_textures_pixels(data, i);
-        mlx_destroy_image(data->mlx, data->texture[i].img);
+		mlx_destroy_image(data->mlx, data->texture[i].img);
 		i++;
 	}
 }

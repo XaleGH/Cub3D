@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check_file.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asaux <asaux@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:14:10 by asaux             #+#    #+#             */
-/*   Updated: 2025/02/07 14:58:03 by asaux            ###   ########.fr       */
+/*   Updated: 2025/02/07 15:27:33 by thsion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,30 +58,30 @@ void	line_cardinal(char *line, t_data *data, int flag)
 	data->count_line += 1;
 }
 
-void	check_line(char *line, t_data *data)
+void	check_line(char *l, t_data *data)
 {
 	int	i;
 
 	i = 0;
-	if (line[i] == '\n')
+	if (l[i] == '\n')
 		return ;
-	while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
+	while (l[i] == ' ' || (l[i] >= 9 && l[i] <= 13))
 		i++;
-	if (line[i] == 'N' && line[i + 1] == 'O' && data->texture[0].path == NULL)
-		line_cardinal(line, data, 1);
-	if (line[i] == 'S' && line[i + 1] == 'O' && data->texture[1].path == NULL)
-		line_cardinal(line, data, 2);
-	if (line[i] == 'W' && line[i + 1] == 'E' && data->texture[2].path == NULL)
-		line_cardinal(line, data, 3);
-	if (line[i] == 'E' && line[i + 1] == 'A' && data->texture[3].path == NULL)
-		line_cardinal(line, data, 4);
-	else if (line[i] == 'C' && data->cc == NULL)
-		line_color(line, data, 1);
-	else if (line[i] == 'F' && data->cf == NULL)
-		line_color(line, data, 2);
+	if (l[i] == 'N' && l[i + 1] == 'O' && data->texture[0].path == NULL)
+		line_cardinal(l, data, 1);
+	else if (l[i] == 'S' && l[i + 1] == 'O' && data->texture[1].path == NULL)
+		line_cardinal(l, data, 2);
+	else if (l[i] == 'W' && l[i + 1] == 'E' && data->texture[2].path == NULL)
+		line_cardinal(l, data, 3);
+	else if (l[i] == 'E' && l[i + 1] == 'A' && data->texture[3].path == NULL)
+		line_cardinal(l, data, 4);
+	else if (l[i] == 'C' && data->cc == NULL)
+		line_color(l, data, 1);
+	else if (l[i] == 'F' && data->cf == NULL)
+		line_color(l, data, 2);
 	else
 	{
-		free(line);
+		free(l);
 		ft_error_data(data, 1);
 	}
 }

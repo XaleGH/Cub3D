@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_wall.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/07 14:59:27 by thsion            #+#    #+#             */
+/*   Updated: 2025/02/07 15:00:36 by thsion           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 // 0 = NO ; 1 = SO ; 2 = WE ; 3 = EA
@@ -50,7 +62,8 @@ void	draw_wall(t_data *data, int top_pix, int bottom_pix, int ray)
 	while (top_pix < bottom_pix)
 	{
 		data->text_y = pos_y;
-		data->color = data->wall[text_nb][TILE_SIZE * data->text_y + data->text_x];
+		data->color = data->wall[text_nb][TILE_SIZE
+			* data->text_y + data->text_x];
 		pos_y += step;
 		if (data->ray.flag == 0)
 			data->color = (data->color >> 1) & 8355711;

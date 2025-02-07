@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/07 15:03:02 by thsion            #+#    #+#             */
+/*   Updated: 2025/02/07 15:04:42 by thsion           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 int	hit_wall(t_data *data, double x, double y, char flag)
@@ -6,12 +18,14 @@ int	hit_wall(t_data *data, double x, double y, char flag)
 	int	map_y;
 
 	map_x = x / TILE_SIZE;
-	if (flag == 'V' && data->ray.r_angle > PI / 2 && data->ray.r_angle < 3 * PI / 2)
+	if (flag == 'V' && data->ray.r_angle > PI / 2 && data->ray.r_angle < 3
+		* PI / 2)
 		map_x = x / TILE_SIZE - 1;
 	map_y = y / TILE_SIZE;
 	if (flag == 'H' && data->ray.r_angle > PI)
 		map_y = y / TILE_SIZE - 1;
-	if (map_x < 0 || map_y < 0 || map_y >= data->nb_row || map_x >= (int)ft_strlen(data->map[map_y]))
+	if (map_x < 0 || map_y < 0 || map_y >= data->nb_row || map_x
+		>= (int)ft_strlen(data->map[map_y]))
 		return (0);
 	if (data->map[map_y][map_x] == '1')
 		return (0);
@@ -94,7 +108,9 @@ void	raycasting(t_data *data)
 	ray = 0;
 	data->ray.r_angle = data->player.p_angle - (data->player.fov_rad / 2);
 	data->img_screen.img = mlx_new_image(data->mlx, SCR_WIDTH, SCR_HEIGHT);
-	data->img_screen.addr = mlx_get_data_addr(data->img_screen.img, &data->img_screen.bits_per_pixel, &data->img_screen.line_length, &data->img_screen.endian);
+	data->img_screen.addr = mlx_get_data_addr(data->img_screen.img,
+			&data->img_screen.bits_per_pixel, &data->img_screen.line_length,
+			&data->img_screen.endian);
 	while (ray < SCR_WIDTH)
 	{
 		get_shorter_distance(data);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thsion <thsion@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/07 15:09:29 by thsion            #+#    #+#             */
+/*   Updated: 2025/02/07 15:10:43 by thsion           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -52,7 +64,7 @@ typedef struct s_texture
 	void	*img;
 	int		*addr;
 	int		bits_per_pixel;
-	int		 line_length;
+	int		line_length;
 	int		endian;
 	int		height;
 	int		width;
@@ -95,7 +107,7 @@ typedef struct s_data
 	int				count_line;
 	int				valid_map;
 	double			wall_height;
-    double			delta_angle;
+	double			delta_angle;
 	int				text_x;
 	int				text_y;
 	unsigned int	color;
@@ -106,9 +118,6 @@ typedef struct s_data
 	t_player		player;
 	t_ray			ray;
 	t_texture		texture[4];
-
-
-
 }		t_data;
 
 /* Fonctions */
@@ -134,21 +143,24 @@ void	is_closed(char **map_cpy, int y, int x, t_data *data);
 void	check_wall(t_data *data);
 
 /* parsing/parsing.c */
-void    init_cell_floor_color(t_data *data);
+void	init_cell_floor_color(t_data *data);
 void	init_map_data(t_data *data);
 void	read_map(int file, t_data *data);
 void	read_option(char **av, t_data *data);
 int		parsing(char **av, t_data *data);
 
 /* player/input.c */
-int 	key_press(int keycode, t_data *data);
+int		key_press(int keycode, t_data *data);
+bool	check_pos(t_data *data);
 int		handle_events(int keycode, t_data *data);
-int 	handle_close(t_data *data);
+int		handle_close(t_data *data);
 
 /* player/moves.c */
 void	rotate(t_data *data, int direction);
 void	forward_or_back(t_data *data, int dir);
 void	left_or_right(t_data *data, int dir);
+void	init_p_angle(t_data *data, char dir);
+void	init_player(t_data *data, int x, int y);
 
 /* raycasting/draw_wall.c */
 int		get_texture(t_data *data);
