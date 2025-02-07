@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asaux <asaux@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/07 14:59:58 by asaux             #+#    #+#             */
+/*   Updated: 2025/02/07 15:00:12 by asaux            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	free_array(char **array)
@@ -26,7 +38,7 @@ int	rgb_to_hex(char *rgb_str)
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
-    free_array(rgb);
+	free_array(rgb);
 	color = (r << 16) | (g << 8) | b;
 	return (color);
 }

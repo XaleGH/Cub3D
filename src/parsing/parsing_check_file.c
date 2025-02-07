@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_check_file.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asaux <asaux@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/07 14:14:10 by asaux             #+#    #+#             */
+/*   Updated: 2025/02/07 14:58:03 by asaux            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 int	check_exten(char *av)
@@ -57,11 +69,11 @@ void	check_line(char *line, t_data *data)
 		i++;
 	if (line[i] == 'N' && line[i + 1] == 'O' && data->texture[0].path == NULL)
 		line_cardinal(line, data, 1);
-	else if (line[i] == 'S' && line[i + 1] == 'O' && data->texture[1].path == NULL)
+	if (line[i] == 'S' && line[i + 1] == 'O' && data->texture[1].path == NULL)
 		line_cardinal(line, data, 2);
-	else if (line[i] == 'W' && line[i + 1] == 'E' && data->texture[2].path == NULL)
+	if (line[i] == 'W' && line[i + 1] == 'E' && data->texture[2].path == NULL)
 		line_cardinal(line, data, 3);
-	else if (line[i] == 'E' && line[i + 1] == 'A' && data->texture[3].path == NULL)
+	if (line[i] == 'E' && line[i + 1] == 'A' && data->texture[3].path == NULL)
 		line_cardinal(line, data, 4);
 	else if (line[i] == 'C' && data->cc == NULL)
 		line_color(line, data, 1);
@@ -72,29 +84,6 @@ void	check_line(char *line, t_data *data)
 		free(line);
 		ft_error_data(data, 1);
 	}
-}
-
-void    init_p_angle(t_data *data, char dir)
-{
-	if (dir == 'N')
-		data->player.p_angle = 3 * PI / 2;
-	if (dir == 'S')
-		data->player.p_angle = PI / 2;
-	if (dir == 'E')
-		data->player.p_angle = 0;
-	if (dir == 'W')
-		data->player.p_angle = PI;
-}
-
-void    init_player(t_data *data, int x, int y)
-{
-	data->player.map_x = x;
-	data->player.map_y = y;
-	data->player.p_x = x * TILE_SIZE + TILE_SIZE / 2;
-	data->player.p_y = y * TILE_SIZE + TILE_SIZE / 2;
-	data->player.p_speed = 10;
-	data->player.fov_rad = (FOV * PI / 180);
-	init_p_angle(data, data->map[y][x]);
 }
 
 void	check_player(t_data *data)

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asaux <asaux@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/07 14:14:13 by asaux             #+#    #+#             */
+/*   Updated: 2025/02/07 14:58:42 by asaux            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	init_map_data(t_data *data)
 {
-    data->mlx = mlx_init();
+	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, SCR_WIDTH, SCR_HEIGHT, "Cub3D");
 	data->nb_column = 0;
 	data->nb_row = 0;
@@ -17,11 +29,10 @@ void	init_map_data(t_data *data)
 	data->valid_map = 1;
 	data->map = NULL;
 	data->delta_angle = 0.03;
-
-    data->text_y = 0;
-    data->text_x = 0;
-    data->ray.flag = 0;
-    data->color = 0;
+	data->text_y = 0;
+	data->text_x = 0;
+	data->ray.flag = 0;
+	data->color = 0;
 }
 
 void	read_map(int file, t_data *data)
@@ -53,10 +64,10 @@ void	read_map(int file, t_data *data)
 	return (close(file), free(map_line));
 }
 
-void    init_cell_floor_color(t_data *data)
+void	init_cell_floor_color(t_data *data)
 {
-    data->ceiling_color = rgb_to_hex(data->cc);
-    data->floor_color = rgb_to_hex(data->cf);
+	data->ceiling_color = rgb_to_hex(data->cc);
+	data->floor_color = rgb_to_hex(data->cf);
 }
 
 void	read_option(char **av, t_data *data)
